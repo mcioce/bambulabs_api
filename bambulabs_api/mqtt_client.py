@@ -236,9 +236,9 @@ class PrinterMQTTClient:
                 self._client.publish(
                     self.command_topic, json.dumps(
                         {
-                            "pushing": {"command": "pushall"},
-                            "info": {"command": "get_version"},
-                            "upgrade": {"command": "get_history"},
+                            "pushing": {"sequence_id": "0", "command": "pushall"},
+                            "info": {"sequence_id": "1", "command": "get_version"},
+                            "upgrade": {"sequence_id": "2", "command": "get_history"},
                         }))
             logger.info("Connection Handshake Completed")
         else:
@@ -316,6 +316,27 @@ class PrinterMQTTClient:
             bool: success state of the get info command
         """
         return self.__publish_command({"info": {"command": "get_version"}})
+    
+    def printer_type(self) -> PrinterType | None:
+        """
+        Get the firmware verions.
+
+        Returns:
+            str: firmware version
+        """
+        product_name: dict[str, Any] | None = next(
+            (v for v in self.__get_info("module", [])
+             if v.get("product_name", None) is not None), None)
+        if product_name is None:
+            return None
+        
+        product_name = product_name.get("product_name", "")
+        
+        for printer_type in PrinterType:
+            if printer_type.value.lower() in product_name.lower():
+                return printer_type
+        
+        return None
 
     def request_firmware_history(self):
         """
