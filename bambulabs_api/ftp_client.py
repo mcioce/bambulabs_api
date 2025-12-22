@@ -54,7 +54,7 @@ class ImplicitFTP_TLS(ftplib.FTP_TLS):
                     callback(buf)
             # shutdown ssl layer
             if isinstance(conn, ssl.SSLSocket):
-                # conn.unwrap()  # Fix for storbinary waiting indefinitely for response message from server  # noqa
+                conn.unwrap()  # Fix for storbinary waiting indefinitely for response message from server  # noqa
                 pass
         finally:
             conn.close()  # This is the addition to the previous comment.
