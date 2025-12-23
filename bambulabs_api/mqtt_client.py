@@ -1237,8 +1237,8 @@ class PrinterMQTTClient:
             if trays:
                 for tray_id, tray in enumerate(trays):
                     tray_id = int(tray.get("id", tray_id))
-                    tray_n: Any | None = tray.get("n", None)
-                    if tray_n:
+                    tray_info_idx: Any | None = tray.get("tray_info_idx", None)
+                    if tray_info_idx:
                         ams.set_filament_tray(
                             tray_index=tray_id,
                             filament_tray=FilamentTray.from_dict(tray))
