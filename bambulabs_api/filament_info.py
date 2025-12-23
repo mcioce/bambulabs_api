@@ -177,8 +177,6 @@ class FilamentTray:
     xcam_info: The XCam information.
     tray_uuid: The tray UUID.
     """
-    k: float | None = None
-    n: int | None = None
     tag_uid: str
     tray_id_name: str
     tray_info_idx: str
@@ -187,14 +185,16 @@ class FilamentTray:
     tray_color: str
     tray_weight: str
     tray_diameter: str
-    tray_temp: str | None = None
-    tray_time: str | None = None
     bed_temp_type: str
     bed_temp: str
     nozzle_temp_max: int
     nozzle_temp_min: int
     xcam_info: str
     tray_uuid: str
+    k: float | None = None
+    n: int | None = None
+    tray_temp: str | None = None
+    tray_time: str | None = None
     cols: list[str] | None = None
 
     @cache
