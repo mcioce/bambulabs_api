@@ -317,7 +317,7 @@ class PrinterMQTTClient:
         """
         return self.__publish_command({"info": {"command": "get_version"}})
     
-    def printer_type(self) -> PrinterType | None:
+    def get_printer_type(self) -> PrinterType | None:
         """
         Get the firmware verions.
 
