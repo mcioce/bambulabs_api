@@ -26,6 +26,8 @@ class PrinterType(str, Enum):
     A1_MINI: A1_MINI printer
     X1C: X1C printer
     X1E: X1E printer
+    H2S: H2S printer
+    X2D: X2D printer
     """
     P1S = "P1S"
     P1P = "P1P"
@@ -33,6 +35,8 @@ class PrinterType(str, Enum):
     A1_MINI = "A1_MINI"
     X1C = "X1C"
     X1E = "X1E"
+    H2S = "H2S"
+    X2D = "X2D"
 
     def __str__(self):
         return self.value
